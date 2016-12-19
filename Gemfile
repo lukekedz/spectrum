@@ -35,6 +35,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'simple_form'
 gem 'materialize-sass'
+gem 'hirb'
+
+gem 'nokogiri'
+gem 'httparty'
+gem 'pry'
+gem 'json'
+
 
 group :development do
   gem 'spring'
