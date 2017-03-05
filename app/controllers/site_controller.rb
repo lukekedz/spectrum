@@ -1,6 +1,5 @@
   class SiteController < ApplicationController
-  protect_from_forgery with: :exception
-  # before_action :authenticate_user!
+  skip_before_filter :verify_authenticity_token
 
   def scrape
     page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=2017')
@@ -24,6 +23,23 @@
 
       @stats.push team_data
       i += 1
+    end
+  end
+
+  def stats_upload
+    json_req = nil
+
+    # TO DO: must be a more elegant way to do this
+    request.headers.each do |h|
+      if h[0] == "CONTENT_TYPE" && h[1] == "application/json"
+        json_req = true
+      end
+    end
+
+    if json_req == true
+      render :nothing => true, :status => 200
+    else
+      # TO DO: return error (inc logging)
     end
   end
 
