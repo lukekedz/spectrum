@@ -1,0 +1,20 @@
+<h5>SPECTRUM</h5>
+<br/>
+
+<table>
+	<tr>
+		<th>Rank</th>
+		<th>Team</th>
+		<% @categories.each_with_index do |rh, index| %>
+			<th><%= rh %></th>
+		<% end %>
+	</tr>
+
+	<% @stats.each do |row| %>
+        <tr>
+            <% row.each do |value| %>
+                <td><%= value %></td>
+            <% end %>
+        </tr>
+    <% end %>
+</table>
