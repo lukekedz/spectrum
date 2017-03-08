@@ -10,11 +10,13 @@
 		<% end %>
 	</tr>
 
-	<% @stats.each do |row| %>
-        <tr>
-            <% row.each do |value| %>
-                <td><%= value %></td>
-            <% end %>
-        </tr>
-    <% end %>
 </table>
+
+<br/>
+<br/>
+
+<h5><%= @team.abbr %>: <%= @team.name %></h5>
+
+<% @stats.each do |day| %>
+    <p><%= day.created_at.to_s[0..9] %> => <%= day.g %></p>
+<% end %>

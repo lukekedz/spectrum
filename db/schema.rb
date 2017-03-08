@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305164705) do
+ActiveRecord::Schema.define(version: 20170307232029) do
+
+  create_table "statistics", force: :cascade do |t|
+    t.integer  "team_id",    null: false
+    t.integer  "rk"
+    t.integer  "g"
+    t.integer  "a"
+    t.integer  "pm"
+    t.integer  "pim"
+    t.integer  "ppp"
+    t.integer  "fow"
+    t.integer  "sog"
+    t.integer  "hit"
+    t.integer  "def"
+    t.integer  "w"
+    t.integer  "sv"
+    t.integer  "so"
+    t.integer  "gaa"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",       null: false
+    t.string   "abbr",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
