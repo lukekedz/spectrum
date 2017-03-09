@@ -8,7 +8,7 @@ page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=
 
 @stats = []
 skip   = [2, 12, 18, 19, 20]
-columns = ["rk", "team", 2, "g", "a", "pm", "pim", "ppp", "fow", "sog", "hit", "def", 12, "w", "sv", "so", "gaa", "sv", 18, 19, 20]
+columns = ["rk", "team", 2, "g", "a", "pm", "pim", "ppp", "fow", "sog", "hit", "def", 12, "w", "sv", "so", "gaa", "prcnt", 18, 19, 20]
 
 i = 4
 while i <= 13

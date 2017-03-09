@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20170307232029) do
 
   create_table "statistics", force: :cascade do |t|
-    t.integer  "team_id",    null: false
+    t.integer  "team_id",                            null: false
     t.integer  "rk"
     t.integer  "g"
     t.integer  "a"
@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 20170307232029) do
     t.integer  "w"
     t.integer  "sv"
     t.integer  "so"
-    t.integer  "gaa"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "gaa",        precision: 5, scale: 4
+    t.decimal  "prcnt",      precision: 5, scale: 4
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "teams", force: :cascade do |t|

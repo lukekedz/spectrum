@@ -34,9 +34,11 @@
     # @stats.push @category
 
     # iterate for set min/max from data
-    @min = 200
-    @max = 600
+    @sk_min = 100
+    @sk_max = 5000
 
+    @g_min = 0
+    @g_max = 125
   end
 
   def stats_upload
@@ -67,21 +69,21 @@
     # if json_req == true
       record = Statistic.create(
         team_id: team[0].id,
-        rk:  row["rk"],
-        g:   row["g"],
-        a:   row["a"],
-        pm:  row["pm"],
-        pim: row["pim"],
-        ppp: row["ppp"],
-        fow: row["fow"],
-        sog: row["sog"],
-        hit: row["hit"],
-        def: row["def"],
-        w:   row["w"],
-        sv:  row["sv"],
-        so:  row["so"],
-        gaa: row["gaa"],
-        sv:  row["sv"],
+        rk:    row["rk"],
+        g:     row["g"],
+        a:     row["a"],
+        pm:    row["pm"],
+        pim:   row["pim"],
+        ppp:   row["ppp"],
+        fow:   row["fow"],
+        sog:   row["sog"],
+        hit:   row["hit"],
+        def:   row["def"],
+        w:     row["w"],
+        sv:    row["sv"],
+        so:    row["so"],
+        gaa:   row["gaa"],
+        prcnt: row["prcnt"],
         )
     end
 

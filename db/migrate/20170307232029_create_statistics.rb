@@ -15,8 +15,8 @@ class CreateStatistics < ActiveRecord::Migration
         t.integer :w
         t.integer :sv
         t.integer :so
-        t.integer :gaa
-        t.integer :sv
+        t.decimal :gaa, precision: 5, scale: 4
+        t.decimal :prcnt, precision: 5, scale: 4
 
         t.timestamps null: false
     end
