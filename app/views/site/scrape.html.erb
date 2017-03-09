@@ -1,22 +1,7 @@
 <h5>SPECTRUM</h5>
 <br/>
-
-<table>
-	<tr>
-		<th>Rank</th>
-		<th>Team</th>
-		<% @categories.each_with_index do |rh, index| %>
-			<th><%= rh %></th>
-		<% end %>
-	</tr>
-
-</table>
-
-<br/>
 <br/>
 
-<h5><%= @team.abbr %>: <%= @team.name %></h5>
+<%= line_chart @stats.map, min: @min, max: @max, discrete: true %>
 
-<% @stats.each do |day| %>
-    <p><%= day.created_at.to_s[0..9] %> => <%= day.g %></p>
-<% end %>
+

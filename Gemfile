@@ -42,6 +42,8 @@ gem 'httparty'
 gem 'pry'
 gem 'json'
 
+gem 'chartkick'
+gem 'groupdate'
 
 group :development do
   gem 'spring'
