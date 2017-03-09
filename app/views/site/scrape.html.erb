@@ -4,4 +4,15 @@
 
 <%= line_chart @stats.map, min: @min, max: @max, discrete: true %>
 
+<br/>
+<br/>
 
+<!-- http://stackoverflow.com/questions/18073327/rails-and-chartkick -->
+<%= line_chart [
+  {name: "Goals",   data: Statistic.where(team_id: 1).map{|t| [t.created_at.to_s[5..9], t.g]   }, min: @min, max: @max},
+  {name: "Assists", data: Statistic.where(team_id: 1).map{|t| [t.created_at.to_s[5..9], t.a]   }, min: @min, max: @max},
+  {name: "PIM",     data: Statistic.where(team_id: 1).map{|t| [t.created_at.to_s[5..9], t.pim] }, min: @min, max: @max}
+] %>
+
+<br/>
+<br/>

@@ -34,8 +34,8 @@
     # @stats.push @category
 
     # iterate for set min/max from data
-    @min = 220
-    @max = 230
+    @min = 200
+    @max = 600
 
   end
 
