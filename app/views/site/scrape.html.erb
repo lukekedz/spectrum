@@ -19,6 +19,13 @@
 <br/>
 
 <%= line_chart [
+  {name: "Goals",    data: Statistic.where(team_id: 1).map{ |st| [st.created_at.to_s[5..9], st.g]  }}
+], min: 220, max: 240, legend: "bottom"  %>
+
+<br/>
+<br/>
+
+<%= line_chart [
   {name: "W",       data: Statistic.where(team_id: 1).map{ |st| [st.created_at.to_s[5..9], st.w]   }},
   {name: "SV",      data: Statistic.where(team_id: 1).map{ |st| [st.created_at.to_s[5..9], st.sv]  }},
   {name: "SO",      data: Statistic.where(team_id: 1).map{ |st| [st.created_at.to_s[5..9], st.so]  }},
