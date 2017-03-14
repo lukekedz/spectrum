@@ -1,4 +1,4 @@
-ZAMBONI is a nokogiri web-scraper for tracking and analyzing ESPN fantasy hockey statistics.
+SPECTRUM is a Rails App for tracking and analyzing ESPN fantasy hockey statistics. Data feed comes from ZAMBONI, a nokogiri web-scraper running on a Raspberry Pi.
 
 MIT License
 
