@@ -1,0 +1,36 @@
+<table>
+    <tr>
+        <th>Rank</th>
+        <th>Team</th>
+        <% @categories.each_with_index do |rh, index| %>
+            <th><%= rh %></th>
+        <% end %>
+            <th>Created</th>
+    </tr>
+
+    <% @records.each do |row| %>
+        <tr>
+            <td><%= row.rk %></td>
+            <td><%= Team.where(id: row.team_id)[0].name %></td>
+            <td><%= row.g %></td>
+            <td><%= row.a %></td>
+            <td><%= row.pm %></td>
+            <td><%= row.pim %></td>
+            <td><%= row.ppp %></td>
+            <td><%= row.fow %></td>
+            <td><%= row.sog %></td>
+            <td><%= row.hit %></td>
+            <td><%= row.def %></td>
+            <td><%= row.w %></td>
+            <td><%= row.sv %></td>
+            <td><%= row.so %></td>
+            <td><%= row.gaa.to_s[0..3] %></td>
+            <td><%= row.prcnt.to_s[0..4] %></td>
+            <td><%= row.created_at.to_s[5..9] %></td>
+        </tr>
+    <% end %>
+
+
+</table>
+
+

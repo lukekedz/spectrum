@@ -16,7 +16,7 @@
 
     @stats = []
 
-    # http://chartkick.com/ 
+    # http://chartkick.com/
     # http://stackoverflow.com/questions/27590771/rails-chartkick-want-only-integer-values-on-axes-use-discrete-or-something-els
     Statistic.where(team_id: 1).each do |row|
       # @category = []
@@ -95,6 +95,16 @@
     # else
       # TO DO: return error (inc logging)
     # end
+  end
+
+  def last_upload
+    page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=2017')
+
+    categories  = Nokogiri::HTML(page).css('#statsTable tr:nth-child(3) a')
+    @categories = []
+    categories.each { |category| @categories.push category.text }
+
+    @records = Statistic.last(10)
   end
 
 end
