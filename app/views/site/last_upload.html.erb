@@ -1,3 +1,6 @@
+Records: <%= @count.inspect %>
+Created: <%= @date.inspect %>
+
 <table>
     <tr>
         <th>Rank</th>
@@ -5,7 +8,6 @@
         <% @categories.each_with_index do |rh, index| %>
             <th><%= rh %></th>
         <% end %>
-            <th>Created</th>
     </tr>
 
     <% @records.each do |row| %>
@@ -26,7 +28,6 @@
             <td><%= row.so %></td>
             <td><%= row.gaa.to_s[0..3] %></td>
             <td><%= row.prcnt.to_s[0..4] %></td>
-            <td><%= row.created_at.to_s[5..9] %></td>
         </tr>
     <% end %>
 
