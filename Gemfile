@@ -23,8 +23,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # additional gems
-gem 'simple_form'
-gem 'materialize-sass'
 gem 'hirb'
 
 gem 'nokogiri'
@@ -40,10 +38,10 @@ group :development do
   gem 'dotenv-rails'
 end
 
-# group :production do
-#   gem 'rails_12factor'
-#   gem 'pg'
-# end
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
 
 
 
