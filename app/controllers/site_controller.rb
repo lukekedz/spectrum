@@ -105,6 +105,8 @@
     categories.each { |category| @categories.push category.text }
 
     @records = Statistic.last(10)
+    @count = Statistic.count
+    @date = Statistic.last.created_at
   end
 
 end
