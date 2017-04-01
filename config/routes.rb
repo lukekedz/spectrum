@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'site#last_upload'
-  get  'site/scrape'
+  get  'site/last_upload'
+  root 'site#scrape'
   post 'site/stats_upload'
 end
