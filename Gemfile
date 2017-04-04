@@ -34,6 +34,10 @@ gem 'json'
 gem 'chartkick'
 gem 'groupdate'
 
+# solving problem after brew install postgresql, when trying to restore copy of Heroku db
+# tried bew link readline --force, but still had errors when launching rails c
+gem 'rb-readline'
+
 group :development do
   gem 'spring'
   gem 'dotenv-rails'

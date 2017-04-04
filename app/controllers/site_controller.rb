@@ -1,6 +1,29 @@
   class SiteController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
+  def root
+  end
+
+  def goals
+    @min = Statistic.minimum(:g) - 25
+    @max = Statistic.maximum(:g) + 25
+  end
+
+  def assists
+    @min = Statistic.minimum(:a) - 25
+    @max = Statistic.maximum(:a) + 25
+  end
+
+  def pim
+    @min = Statistic.minimum(:pim) - 25
+    @max = Statistic.maximum(:pim) + 25
+  end
+
+  def def
+    @min = Statistic.minimum(:def) - 25
+    @max = Statistic.maximum(:def) + 25
+  end
+
   def scrape
     # page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=2017')
 
