@@ -1,16 +1,16 @@
 development:
   adapter: postgresql
   database: development
+  host: localhost
   pool: 5
   timeout: 5000
-  host: localhost
-  port: 5432
 
-# test:
-#   adapter: postgresql
-#   database: test
-#   pool: 5
-#   timeout: 5000
+test:
+  adapter: postgresql
+  database: test
+  host: localhost
+  pool: 5
+  timeout: 5000
 
 production:
   adapter: postgresql
