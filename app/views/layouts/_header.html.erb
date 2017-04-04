@@ -2,12 +2,7 @@
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">&nbsp;&nbsp; SPECTRUM</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <% if current_user %>
-        <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
-      <% end %>
+
     </ul>
   </div>
 </nav>
