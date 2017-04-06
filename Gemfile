@@ -34,6 +34,8 @@ gem 'json'
 gem 'chartkick'
 gem 'groupdate'
 
+gem 'chart-js-rails'
+
 # solving problem after brew install postgresql, when trying to restore copy of Heroku db
 # tried bew link readline --force, but still had errors when launching rails c
 gem 'rb-readline'
