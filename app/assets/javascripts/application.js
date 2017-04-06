@@ -18,4 +18,3 @@
 //= require chartkick
 //= require Chart
 //= require_tree .
-
