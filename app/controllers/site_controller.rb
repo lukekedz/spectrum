@@ -25,8 +25,13 @@
   end
 
   def granimation
-    @min = Statistic.minimum(:pim) - 25
-    @max = Statistic.maximum(:pim) + 25
+    # @min = Statistic.minimum(:pim) - 25
+    # @max = Statistic.maximum(:pim) + 25
+
+    @jdub = Statistic.where(team_id: 1).map { |st| [st.created_at.to_s[5..9], st.pim] }
+    @elko = Statistic.where(team_id: 2).map { |st| [st.created_at.to_s[5..9], st.pim] }
+    @gsal = Statistic.where(team_id: 3).map { |st| [st.created_at.to_s[5..9], st.pim] }
+    @pbts = Statistic.where(team_id: 4).map { |st| [st.created_at.to_s[5..9], st.pim] }
   end
 
   def scrape
