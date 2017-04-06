@@ -1,0 +1,21 @@
+<br/>
+<h5 style="text-align:center">GRANIMATION: PENALTY MINUTES</h5>
+<br/>
+<br/>
+
+<%= line_chart [
+  {name: Team.find(1).name, data: Statistic.where(team_id: 1).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(2).name, data: Statistic.where(team_id: 2).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(3).name, data: Statistic.where(team_id: 3).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(4).name, data: Statistic.where(team_id: 4).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(5).name, data: Statistic.where(team_id: 5).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(6).name, data: Statistic.where(team_id: 6).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(7).name, data: Statistic.where(team_id: 7).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(8).name, data: Statistic.where(team_id: 8).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(9).name, data: Statistic.where(team_id: 9).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+  {name: Team.find(10).name, data: Statistic.where(team_id: 10).map{ |st| [st.created_at.to_s[5..9], st.pim] }},
+], min: @min, max: @max, legend: "left", height: "400px", width: "100%" %>
+
+<br/>
+
+<div><h6><%= link_to 'Back', root_path %></h5></div>

@@ -24,6 +24,11 @@
     @max = Statistic.maximum(:def) + 25
   end
 
+  def granimation
+    @min = Statistic.minimum(:pim) - 25
+    @max = Statistic.maximum(:pim) + 25
+  end
+
   def scrape
     # page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=2017')
 

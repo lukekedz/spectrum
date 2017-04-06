@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get  'site/assists'
   get  'site/pim'
   get  'site/def'
+  get  'site/granimation'
 
   get  'site/last_upload'
   get  'site/scrape'
