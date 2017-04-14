@@ -1,0 +1,21 @@
+<script>
+	var jdub = (<%= raw @jdub %>);
+	var gsal = (<%= raw @gsal %>);
+
+	$(function() {
+		ga_goals();
+	});
+</script>
+
+<br/>
+<h5 style="text-align:center">GRANIMATION: Single Season Goals</h5>
+<br/>
+<br/>
+
+<div>
+  <canvas id="canvas"></canvas>
+</div>
+
+<br/>
+<br/>
+<div><h6><%= link_to 'Back to Main Menu', root_path %></h5></div>

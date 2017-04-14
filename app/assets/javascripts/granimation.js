@@ -114,11 +114,13 @@ $(document).ready(function() {
 			data: barChartData,
 			responsive: true,
 			barValueSpacing: 2,
+			// deprecated
 			// scaleOverride : true,
 	        // scaleSteps : 20,
 	        // scaleStepWidth : 25,
 	        // scaleStartValue : 350, 
 	        // scaleBeginAtZero: true,
+	        // end deprecated
 			options: {
 				legend: {
 					display: true

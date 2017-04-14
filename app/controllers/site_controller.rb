@@ -34,6 +34,33 @@
     @pbts = Statistic.where(team_id: 4).map { |st| [st.created_at.to_s[5..9], st.pim] }
   end
 
+  def ga_goals
+    # if running seeds 
+    # @jdub31 = Statistic.where(team_id: 1).first(31).map { |st| [st.created_at.to_s[5..9], st.g] }   
+    # @gsal31 = Statistic.where(team_id: 3).first(31).map { |st| [st.created_at.to_s[5..9], st.g] }
+    # @jdub   = Statistic.where(team_id: 1).map { |st| [st.created_at.to_s[5..9], st.g] }
+    # @gsal   = Statistic.where(team_id: 3).map { |st| [st.created_at.to_s[5..9], st.g] }
+
+    @jdub = []
+    @gsal = []
+
+    jdub_goals = 0
+    gsal_goals = 0
+    created_at = Time.new(2017, 10, 31)
+
+    160.times do |i|
+      rando = [0,0,0,0,0,1,1,1,1,2,2,2,3,3,4]
+
+      jdub_goals += rando.sample
+      @jdub.push([created_at.to_s[5..9], jdub_goals])
+
+      gsal_goals += rando.sample
+      @gsal.push([created_at.to_s[5..9], gsal_goals])
+
+      created_at += (60 * 60 * 24)
+    end
+  end
+
   def scrape
     # page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=2017')
 
