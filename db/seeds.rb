@@ -1,5 +1,6 @@
 puts
 puts "Seeding... "
+puts
 
 Team.create(abbr: "JDUB", name: "Joker's Wild")
 Team.create(abbr: "KEDZ", name: "Elko Bugles")
