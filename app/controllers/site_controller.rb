@@ -4,6 +4,10 @@
   def root
   end
 
+  def single_page_app
+
+  end
+
   def goals
     @min = Statistic.minimum(:g) - 25
     @max = Statistic.maximum(:g) + 25

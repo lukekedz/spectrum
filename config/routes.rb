@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   root 'site#root'
 
+  get  'site/single_page_app'
   get  'site/goals'
   get  'site/assists'
   get  'site/pim'
