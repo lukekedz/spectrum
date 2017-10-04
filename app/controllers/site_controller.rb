@@ -84,12 +84,12 @@
     puts
 
     params["_json"][0].each do |row|
-      # puts "ROW: " + row.inspect
-      # puts "INC TEAM: " + row["team"].inspect
+      puts "ROW: " + row.inspect
+      puts "INC TEAM: " + row["team"].inspect
 
       team = Team.where(name: row["team"])
-      # puts "TEAM ID: " + team[0].id.inspect
-      # puts
+      puts "TEAM ID: " + team[0].id.inspect
+      puts
 
     # if json_req == true
       record = Statistic.create(
