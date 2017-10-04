@@ -1,5 +1,6 @@
   class SiteController < ApplicationController
-  skip_before_filter :verify_authenticity_token
+  before_action :ip_authorized?, only: [:last_upload, :stats_upload]
+  skip_before_filter :verify_authenticity_token, only: :stats_upload
 
   def root
   end
@@ -96,7 +97,6 @@
         rk:    row["rk"],
         g:     row["g"],
         a:     row["a"],
-        pm:    row["pm"],
         pim:   row["pim"],
         ppp:   row["ppp"],
         fow:   row["fow"],
@@ -122,15 +122,37 @@
   end
 
   def last_upload
-    page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=2017')
+    page = HTTParty.get('http://games.espn.com/fhl/standings?leagueId=8266&seasonId=2018')
 
     categories  = Nokogiri::HTML(page).css('#statsTable tr:nth-child(3) a')
     @categories = []
     categories.each { |category| @categories.push category.text }
 
-    @records = Statistic.last(10)
+    @records = Statistic.last(12)
     @count = Statistic.count
     @date = Statistic.last.created_at
+  end
+
+
+  private
+
+  def ip_authorized?
+    unless ENV['RASPI'] == request.remote_ip && ENV['SECRET'] == params[:secret]
+
+      puts "******************************"
+      puts request
+      puts request.inspect
+      puts request.remote_ip.inspect
+      puts
+      puts "******************************"
+
+      # TODO: email alert
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+        format.xml  { head :not_found }
+        format.any  { head :not_found }
+      end
+    end
   end
 
 end
