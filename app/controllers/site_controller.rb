@@ -1,5 +1,5 @@
   class SiteController < ApplicationController
-  before_action :ip_authorized?, only: [:last_upload, :stats_upload]
+  before_action :ip_authorized?, only: [:last_upload, :stats_upload, :last_twelve]
   skip_before_filter :verify_authenticity_token, only: :stats_upload
 
   def root
@@ -68,34 +68,40 @@
 
   def stats_upload
     # Statistic.transaction do
-    #   params['_json'][0].each do |row|
-    #     team = Team.where(name: row['team'])
-    #     record = Statistic.new(
-    #       team_id: team[0].id,
-    #       rk:    row['rk'],
-    #       g:     row['g'],
-    #       a:     row['a'],
-    #       pim:   row['pim'],
-    #       ppp:   row['ppp'],
-    #       fow:   row['fow'],
-    #       sog:   row['sog'],
-    #       hit:   row['hit'],
-    #       def:   row['def'],
-    #       w:     row['w'],
-    #       sv:    row['sv'],
-    #       so:    row['so'],
-    #       gaa:   row['gaa'],
-    #       prcnt: row['prcnt'],
+    #   params['_json'][0].each_with_index do |row, index|
+    #     if index != 0
+    #       team = Team.where(name: row['team'])
+    #       record = Statistic.new(
+    #         team_id: team[0].id,
+    #         rk:    row['rk'],
+    #         g:     row['g'],
+    #         a:     row['a'],
+    #         pim:   row['pim'],
+    #         ppp:   row['ppp'],
+    #         fow:   row['fow'],
+    #         sog:   row['sog'],
+    #         hit:   row['hit'],
+    #         def:   row['def'],
+    #         w:     row['w'],
+    #         sv:    row['sv'],
+    #         so:    row['so'],
+    #         gaa:   row['gaa'],
+    #         prcnt: row['prcnt'],
     #       )
+    #     end
     #   end
 
-      # if record.save
+    #   if record.save
         render :nothing => true, :status => 200
     #   else
     #     raise ActiveRecord::Rollback
     #     render :nothing => true, :status => 404
     #   end
     # end
+  end
+
+  def last_twelve
+    Statistic.last(12)
   end
 
   def last_upload
