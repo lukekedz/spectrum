@@ -101,7 +101,8 @@
   end
 
   def last_twelve
-    Statistic.last(12)
+    stats = Statistic.last(12),
+    render json: stats
   end
 
   def last_upload
