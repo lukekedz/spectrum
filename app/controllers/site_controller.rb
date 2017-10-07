@@ -94,7 +94,7 @@
       # else
       #   raise ActiveRecord::Rollback
       # end
-    end
+    # end
   end
 
   def last_upload
