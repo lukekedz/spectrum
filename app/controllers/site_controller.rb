@@ -113,7 +113,7 @@
   private
 
   def ip_authorized?
-    unless ENV['RASPI'] == request.remote_ip && ENV['SECRET'] == params['_json'][0]
+    unless ENV['RASPI'] == request.remote_ip && ENV['SECRET'] == params['_json'][0][0]
       puts '******************************'
       puts request
       puts request.inspect
