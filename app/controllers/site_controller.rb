@@ -71,7 +71,7 @@
       params['_json'][0].each_with_index do |row, index|
         if index != 0
           team = Team.where(name: row['team'])
-          record = Statistic.new(
+          record = Statistic.create(
             team_id: team[0].id,
             rk:    row['rk'],
             g:     row['g'],
@@ -91,12 +91,10 @@
         end
       end
 
-      if record.save
-        render :nothing => true, :status => 200
-      else
-        raise ActiveRecord::Rollback
-        render :nothing => true, :status => 404
-      end
+      render :nothing => true, :status => 200
+    else
+      raise ActiveRecord::Rollback
+      render :nothing => true, :status => 404
     end
   end
 
