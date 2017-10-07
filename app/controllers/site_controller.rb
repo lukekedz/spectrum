@@ -1,5 +1,5 @@
   class SiteController < ApplicationController
-  # before_action :ip_authorized?, only: [:last_upload, :stats_upload]
+  before_action :ip_authorized?, only: [:last_upload, :stats_upload]
   skip_before_filter :verify_authenticity_token, only: :stats_upload
 
   def root
@@ -40,8 +40,8 @@
   end
 
   def ga_goals
-    # if running seeds 
-    # @jdub31 = Statistic.where(team_id: 1).first(31).map { |st| [st.created_at.to_s[5..9], st.g] }   
+    # if running seeds
+    # @jdub31 = Statistic.where(team_id: 1).first(31).map { |st| [st.created_at.to_s[5..9], st.g] }
     # @gsal31 = Statistic.where(team_id: 3).first(31).map { |st| [st.created_at.to_s[5..9], st.g] }
     # @jdub   = Statistic.where(team_id: 1).map { |st| [st.created_at.to_s[5..9], st.g] }
     # @gsal   = Statistic.where(team_id: 3).map { |st| [st.created_at.to_s[5..9], st.g] }
@@ -67,58 +67,34 @@
   end
 
   def stats_upload
-    # json_req = nil
+    Statistic.transaction do
+      params['_json'][0].each do |row|
+        team = Team.where(name: row['team'])
+        record = Statistic.new(
+          team_id: team[0].id,
+          rk:    row['rk'],
+          g:     row['g'],
+          a:     row['a'],
+          pim:   row['pim'],
+          ppp:   row['ppp'],
+          fow:   row['fow'],
+          sog:   row['sog'],
+          hit:   row['hit'],
+          def:   row['def'],
+          w:     row['w'],
+          sv:    row['sv'],
+          so:    row['so'],
+          gaa:   row['gaa'],
+          prcnt: row['prcnt'],
+          )
+      end
 
-    # TO DO: must be a more elegant way to do this
-    # request.headers.each do |h|
-    #   if h[0] == "CONTENT_TYPE" && h[1] == "application/json"
-    #     json_req = true
-    #   end
-    # end
-
-    # puts params.inspect
-    # puts params["_json"][0]["team"].inspect
-
-    # team = Team.where(name: params["_json"][0]["team"])
-    # puts team.inspect
-    puts
-
-    params["_json"][0].each do |row|
-      puts "ROW: " + row.inspect
-      puts "INC TEAM: " + row["team"].inspect
-
-      team = Team.where(name: row["team"])
-      puts "TEAM ID: " + team[0].id.inspect
-      puts
-
-    # if json_req == true
-      record = Statistic.create(
-        team_id: team[0].id,
-        rk:    row["rk"],
-        g:     row["g"],
-        a:     row["a"],
-        pim:   row["pim"],
-        ppp:   row["ppp"],
-        fow:   row["fow"],
-        sog:   row["sog"],
-        hit:   row["hit"],
-        def:   row["def"],
-        w:     row["w"],
-        sv:    row["sv"],
-        so:    row["so"],
-        gaa:   row["gaa"],
-        prcnt: row["prcnt"],
-        )
-    end
-
-      # if record.save
+      if record.save
         render :nothing => true, :status => 200
-      # else
-        # render :nothing => true, :status => 400
-      # end
-    # else
-      # TO DO: return error (inc logging)
-    # end
+      else
+        raise ActiveRecord::Rollback
+      end
+    end
   end
 
   def last_upload
@@ -133,22 +109,19 @@
     @date = Statistic.last.created_at
   end
 
-
   private
 
   def ip_authorized?
     unless ENV['RASPI'] == request.remote_ip && ENV['SECRET'] == params[:secret]
-
-      puts "******************************"
+      puts '******************************'
       puts request
       puts request.inspect
       puts request.remote_ip.inspect
       puts
-      puts "******************************"
+      puts '******************************'
 
-      # TODO: email alert
       respond_to do |format|
-        format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+        format.html { render :file => '#{Rails.root}/public/404', :layout => false, :status => :not_found }
         format.xml  { head :not_found }
         format.any  { head :not_found }
       end
