@@ -91,9 +91,10 @@
 
       # if record.save
         render :nothing => true, :status => 200
-      # else
-      #   raise ActiveRecord::Rollback
-      # end
+    #   else
+    #     raise ActiveRecord::Rollback
+    #     render :nothing => true, :status => 404
+    #   end
     # end
   end
 
@@ -112,7 +113,7 @@
   private
 
   def ip_authorized?
-    unless ENV['RASPI'] == request.remote_ip && ENV['SECRET'] == params[:secret]
+    unless ENV['RASPI'] == request.remote_ip #&& ENV['SECRET'] == params[:secret]
       puts '******************************'
       puts request
       puts request.inspect
