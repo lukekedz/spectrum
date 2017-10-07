@@ -101,8 +101,8 @@
   end
 
   def last_twelve
-    stats = Statistic.last(12),
-    render json: stats
+    @stats = Statistic.last(12),
+    render :json => @stats, :layout => false
   end
 
   def last_upload
