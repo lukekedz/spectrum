@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'site#root'
 
   get  'site/single_page_app'
@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   get  'site/last_upload'
   post 'site/stats_upload'
+  get  'site/last_twelve'
 
 end
