@@ -5,6 +5,10 @@ class SiteController < ApplicationController
   def root
   end
 
+  def goals
+    @jdub = Statistic.where(team_id: 1).map { |r| [r.created_at.to_s[5..9], r.g] }
+  end
+
   def stats_upload
     # TODO: catch error if a team name changes
     Statistic.transaction do
