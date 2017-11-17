@@ -67,6 +67,8 @@
   end
 
   def stats_upload
+    # TODO: catch error if a team name changes
+
     # json_req = nil
 
     # TO DO: must be a more elegant way to do this
