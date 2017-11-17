@@ -1,94 +1,12 @@
-  class SiteController < ApplicationController
+class SiteController < ApplicationController
   before_action :ip_authorized?, only: [:last_upload, :stats_upload]
   skip_before_filter :verify_authenticity_token, only: :stats_upload
 
   def root
   end
 
-  def single_page_app
-
-  end
-
-  def goals
-    @min = Statistic.minimum(:g) - 25
-    @max = Statistic.maximum(:g) + 25
-  end
-
-  def assists
-    @min = Statistic.minimum(:a) - 25
-    @max = Statistic.maximum(:a) + 25
-  end
-
-  def pim
-    @min = Statistic.minimum(:pim) - 25
-    @max = Statistic.maximum(:pim) + 25
-  end
-
-  def def
-    @min = Statistic.minimum(:def) - 25
-    @max = Statistic.maximum(:def) + 25
-  end
-
-  def granimation
-    # @min = Statistic.minimum(:pim) - 25
-    # @max = Statistic.maximum(:pim) + 25
-
-    @jdub = Statistic.where(team_id: 1).map { |st| [st.created_at.to_s[5..9], st.pim] }
-    @elko = Statistic.where(team_id: 2).map { |st| [st.created_at.to_s[5..9], st.pim] }
-    @gsal = Statistic.where(team_id: 3).map { |st| [st.created_at.to_s[5..9], st.pim] }
-    @pbts = Statistic.where(team_id: 4).map { |st| [st.created_at.to_s[5..9], st.pim] }
-  end
-
-  def ga_goals
-    # if running seeds
-    # @jdub31 = Statistic.where(team_id: 1).first(31).map { |st| [st.created_at.to_s[5..9], st.g] }
-    # @gsal31 = Statistic.where(team_id: 3).first(31).map { |st| [st.created_at.to_s[5..9], st.g] }
-    # @jdub   = Statistic.where(team_id: 1).map { |st| [st.created_at.to_s[5..9], st.g] }
-    # @gsal   = Statistic.where(team_id: 3).map { |st| [st.created_at.to_s[5..9], st.g] }
-
-    @jdub = []
-    @gsal = []
-
-    jdub_goals = 0
-    gsal_goals = 0
-    created_at = Time.new(2017, 10, 31)
-
-    160.times do |i|
-      rando = [0,0,0,0,0,1,1,1,1,2,2,2,3,3,4]
-
-      jdub_goals += rando.sample
-      @jdub.push([created_at.to_s[5..9], jdub_goals])
-
-      gsal_goals += rando.sample
-      @gsal.push([created_at.to_s[5..9], gsal_goals])
-
-      created_at += (60 * 60 * 24)
-    end
-  end
-
   def stats_upload
     # TODO: catch error if a team name changes
-
-    # json_req = nil
-
-    # TO DO: must be a more elegant way to do this
-    # request.headers.each do |h|
-    #   if h[0] == "CONTENT_TYPE" && h[1] == "application/json"
-    #     json_req = true
-    #   end
-    # end
-
-    # puts params.inspect
-    # puts params["_json"][0]["team"].inspect
-
-    # team = Team.where(name: params["_json"][0]["team"])
-    # puts team.inspect
-    # puts
-
-    # params["_json"][0].each do |row|
-      # puts "ROW: " + row.inspect
-      # puts "INC TEAM: " + row["team"].inspect
-
     Statistic.transaction do
       params['_json'][0].each_with_index do |row, index|
         if index != 0
@@ -141,7 +59,7 @@
     @date = Statistic.last.created_at
   end
 
-  private
+private
 
   def ip_authorized?
     unless ENV['RASPI'] == request.remote_ip && ENV['SECRET'] == params['_json'][0][0]
@@ -159,5 +77,4 @@
       end
     end
   end
-
 end
