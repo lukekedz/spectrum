@@ -72,12 +72,12 @@ $(document).ready(function() {
     $('#chart-modal').empty();
     $('#chart').modal('close');
     resetAll();
-  }
+  };
 
   modifySelection = function() {
     $('#chart-modal').empty();
     $('#chart').modal('close');
-  }
+  };
 
   loadGraph = function() {
     if (selectedTeamsSet.size == 0) {
@@ -97,8 +97,7 @@ $(document).ready(function() {
       success: function(data) {
         $('#chart-modal').append(data);
         $('#chart').modal('open');
-      }
+      };
     });
   };
-
 });
