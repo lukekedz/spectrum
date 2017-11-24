@@ -5,8 +5,40 @@ class SiteController < ApplicationController
   def root
   end
 
-  def goals
-    @jdub = Statistic.where(team_id: 1).map { |r| [r.created_at.to_s[5..9], r.g] }
+  def static_chartkick
+    @teams = Team.all
+  end
+
+  def static_chartkick_modal
+    # ajax call; data is appended to div, which is opened by js/Materialize on success
+
+    categories = {
+      'g':     'Goals', 
+      'a':     'Assists',
+      'pim':   'Penalty Minutes',
+      'ppp':   'Power Play Points',
+      'fow':   'Faceoffs Won',
+      'sog':   'Shots on Goal',
+      'hit':   'Hits',
+      'def':   'Defensemen Points',
+      'w':     'Wins',
+      'sv':    'Saves',
+      'so':    'Shutouts',
+      'gaa':   'Goals Against Average', 
+      'prcnt': 'Save Percentage'
+    }
+    
+    @chart_object = []
+    @category     = categories[params[:category].to_sym]
+
+    teams = Team.where(id: params[:teams])
+    teams.each do |team| 
+      category_stats = Statistic.where(team_id: team.id).map{ |stat| [stat.created_at.to_s[5..9], stat[params[:category].to_sym]] }
+
+      @chart_object.push([team.name, category_stats])
+    end
+
+    render :layout => false
   end
 
   def stats_upload

@@ -1,0 +1,30 @@
+<h5 style="text-align: center"><%= @category.upcase %></h5>
+<p style="text-align: center; color: #D3D3D3;">(clicking on team name will hide/show graph line)</p>
+<br/>
+
+<%= line_chart @chart_object.map { |team|
+    {name: team[0], data: team[1] }
+}, legend: "top" %>
+
+<br/>
+
+<br/>
+
+<div class="row center-align">
+  <div class="col s4 offset-s2">
+    <a class="waves-effect waves-light btn-large" 
+       style="background-color: #64B5F6;"
+       onclick="modifySelection()"
+    >
+      MODIFY SELECTION
+    </a>
+  </div>
+  <div class="col s4">
+    <a class="waves-effect waves-light btn-large" 
+       style="background-color: #64B5F6;"
+       onclick="clearAndCloseModal()"
+    >
+      CLEAR ALL & RESELECT
+    </a>
+  </div>
+</div>

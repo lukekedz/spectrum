@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   root 'site#root'
 
+  get 'site/static_chartkick'
+  get 'site/static_chartkick_modal'
+
   # get  'site/single_page_app'
-  get  'site/goals'
+  # get  'site/goals'
   # get  'site/assists'
   # get  'site/pim'
   # get  'site/def'

@@ -1,0 +1,182 @@
+<script>
+  $(document).ready(function() {
+    $('#chart').modal();
+  });
+</script>
+
+<div class="row">
+  <div class="col s12 center-align">
+    <h4>Static Charts via <a href="https://www.chartkick.com/" target="_blank">Chartkick</a></h4>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="row">
+  <div class="col s12 center-align">
+    <h4>Select Team(s)</h4>
+    <div class="col s3 offset-s3">
+      <a onclick="selectAllTeams()">Select All</a>
+    </div>
+    <div class="col s3">
+      <a onclick="clearTeamSet()">Clear</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <% @teams.first(6).each do |t| %>
+    <div class="col s2" onclick="selectTeam(<%= t.id %>)">
+      <div id="team-<%= t.id %>" class="card-panel grey lighten-2" style="height: 100px;">
+        <span class="white-text">
+          <strong><%= t.name %></strong> (<%= t.abbr.upcase %>)
+        </span>
+      </div>
+    </div>
+  <% end %>
+
+  <% @teams.last(6).each do |t| %>
+    <div class="col s2" onclick="selectTeam(<%= t.id %>)">
+      <div id="team-<%= t.id %>" class="card-panel grey lighten-2" style="height: 100px;">
+        <span class="white-text">
+          <strong><%= t.name %></strong> (<%= t.abbr.upcase %>)
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="divider"></div>
+
+<div class="row">
+  <div class="col s12 center-align">
+    <h4>Select Category</h4>
+    <div class="col s6 offset-s3">
+      <a onclick="clearCategory()">Clear</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s2 offset-s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="g" onclick="selectCategory('g')">
+      <span class="white-text">
+        GOALS
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="a" onclick="selectCategory('a')">
+      <span class="white-text">
+        ASSISTS
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="ppp" onclick="selectCategory('ppp')">
+      <span class="white-text">
+        POWER PLAY POINTS
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="def" onclick="selectCategory('def')">
+      <span class="white-text">
+        DEFENSEMEN POINTS
+      </span>
+    </div>
+  </div>
+
+  <div class="col s2 offset-s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="fow" onclick="selectCategory('fow')">
+      <span class="white-text">
+        FACEOFFS WON
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="sog" onclick="selectCategory('sog')">
+      <span class="white-text">
+        SHOTS ON GOAL
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="hit" onclick="selectCategory('hit')">
+      <span class="white-text">
+        HITS
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="pim" onclick="selectCategory('pim')">
+      <span class="white-text">
+        PENALTY MINUTES
+      </span>
+    </div>
+  </div>
+
+  <div class="col s2 offset-s1">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="w" onclick="selectCategory('w')">
+      <span class="white-text">
+        WINS
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="sv" onclick="selectCategory('sv')">
+      <span class="white-text">
+        SAVES
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="so" onclick="selectCategory('so')">
+      <span class="white-text">
+        SHUTOUTS
+      </span>
+    </div>
+  </div>
+  <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="gaa" onclick="selectCategory('gaa')">
+      <span class="white-text">
+        GOALS AGAINST AVERAGE
+      </span>
+    </div>
+  </div>
+    <div class="col s2">
+    <div class="card-panel grey lighten-2" style="height: 90px;" id="prcnt" onclick="selectCategory('prcnt')">
+      <span class="white-text">
+        SAVE PERCENTAGE
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<br/>
+
+<div class="row center-align">
+  <div class="col s4">
+    <a href="" style="position: relative; top: 40px;">MAIN MENU</a>
+  </div>
+  <div class="col s4">
+    <h4>
+      <a class="waves-effect waves-light btn-large" 
+         style="background-color: #64B5F6;"
+         onclick="loadGraph()"
+      >
+        VIEW CHART!
+      </a>
+    </h4>
+  </div>
+  <div class="col s4">
+    <a href="" onclick="resetAll()" style="position: relative; top: 40px;">CLEAR ALL</a>
+  </div>
+</div>
+
+<!-- chart modal -->
+<div id="chart" class="modal">
+  <div class="modal-content" id="chart-modal">
+  </div>
+</div>
