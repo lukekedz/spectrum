@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root 'site#root'
+  # root 'site#root'
 
-  get 'site/static_chartkick'
+  root 'site#static_chartkick'
   get 'site/static_chartkick_modal'
 
   # get  'site/single_page_app'

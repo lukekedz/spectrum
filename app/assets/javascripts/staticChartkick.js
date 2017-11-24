@@ -97,7 +97,7 @@ $(document).ready(function() {
       success: function(data) {
         $('#chart-modal').append(data);
         $('#chart').modal('open');
-      };
+      }
     });
   };
 });

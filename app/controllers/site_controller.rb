@@ -2,8 +2,8 @@ class SiteController < ApplicationController
   before_action :ip_authorized?, only: [:last_upload, :stats_upload]
   skip_before_filter :verify_authenticity_token, only: :stats_upload
 
-  def root
-  end
+  # def root
+  # end
 
   def static_chartkick
     @teams = Team.all
