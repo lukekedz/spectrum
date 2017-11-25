@@ -4,8 +4,8 @@
   });
 </script>
 
-<div class="row">
-  <div class="col s12 center-align">
+<div class="row center-align">
+  <div class="col s12">
     <h4>Static Charts via <a href="https://www.chartkick.com/" target="_blank">Chartkick</a></h4>
   </div>
 </div>
@@ -48,16 +48,22 @@
 
 <div class="divider"></div>
 
-<div class="row">
-  <div class="col s12 center-align">
+<div class="row center-align">
+  <div class="col s2 valign-wrapper">
+    <%= image_tag "spectrum.jpg", :class => "spectrum-logo" %>
+  </div>
+  <div class="col s8">
     <h4>Select Category</h4>
     <div class="col s6 offset-s3">
       <a onclick="clearCategory()">Clear</a>
     </div>
   </div>
+  <div class="col s1 offset-s1">
+    <%= image_tag "espn_fh_logo.png", :class => "espn-logo" %>
+  </div>
 </div>
 
-<div class="row">
+<div class="row" id="categories">
   <div class="col s2 offset-s2">
     <div class="card-panel grey lighten-2" style="height: 90px;" id="g" onclick="selectCategory('g')">
       <span class="white-text">
@@ -153,10 +159,10 @@
   </div>
 </div>
 
-<div class="divider"></div>
+<div class="divider" id="cat-submit-divider"></div>
 <br/>
 
-<div class="row center-align">
+<div class="row center-align" id="submit">
   <div class="col s4">
     <a href="" style="position: relative; top: 40px;">MAIN MENU</a>
   </div>
