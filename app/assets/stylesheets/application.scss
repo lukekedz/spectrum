@@ -2,6 +2,10 @@
 $primary-color: color("blue", "lighten-2") !default;
 @import 'materialize';
 
+html {
+  overflow-x: hidden;
+}
+
 .container {
 	width: 90%;
 }

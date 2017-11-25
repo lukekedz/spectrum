@@ -2,7 +2,9 @@ function Zamboni() {
   this.$zamb = $('<img id="zamb" src="/assets/zamboni.png">');
   this.$zamb.css('position', 'absolute');
   this.$zamb.css('top', 10);
-  this.$zamb.css('right', -250);
+
+  width = $(window).width();
+  this.$zamb.css('left', width);
 
   this.$zamb.css('height', 55);
   this.$zamb.css('width', 55);
