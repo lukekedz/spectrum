@@ -10,10 +10,59 @@ html {
 	width: 90%;
 }
 
-.sia {
-  height: 30px;
-  width:  30px;
+#nav-background {
+  background-color: white;
 }
+
+.sticks {
+  height: 45px;
+  width: 45px;
+  position: relative;
+  top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#s {
+  font-weight: bold;
+  color: #DE212B; 
+}
+
+#p {
+  font-weight: bold;
+  color: #DE212B; 
+}
+
+#e {
+  font-weight: bold;
+  color: #E34F27; 
+}
+
+#c {
+  font-weight: bold;
+  color: #E34F27; 
+}
+
+#t {
+  font-weight: bold;
+  color: #359655; 
+}
+
+#r {
+  font-weight: bold;
+  color: #359655; 
+}
+
+#u {
+  font-weight: bold;
+  color: #356AB5; 
+}
+
+#m {
+  font-weight: bold;
+  color: #356AB5; 
+}
+
 
 .spectrum-logo {  
   margin: 10px;
@@ -31,4 +80,9 @@ html {
 #categories, #cat-submit-divider, #submit {
   position: relative;
   top: -50px;
+}
+
+.sia {
+  height: 30px;
+  width:  30px;
 }
